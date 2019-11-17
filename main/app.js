@@ -1,42 +1,42 @@
 // Create an object type UserException
-function Error(message) {
-  this.message = message;
-  this.name = 'UserException';
-}
+
 
 
 function addTokens(input, tokens){
     
-    if (typeof input == 'string' || input instanceof String) {
+    if (typeof input != 'string' || input instanceof String) {
+        throw new Error('Invalid input');
         
-        if(input.length<6){
-            
-            throw new Error('Input should have at least 6 characters')
-        }else
-        {
-            
-            if (tokens instanceof Array && typeof tokens.isArray === 'string') {
-                if(!(input.includes("...")))
-                {
-                    
-                    return tokens;
-                }
+    }
                 
-            }else
+if(input.length<6) {
+    
+    throw new Error('Input should have at least 6 characters');
+    
+}
+    
+    for(var i in tokens){
+        if(typeof tokens[i].tokenName!=='string')
+        {
+             
+    throw new Error('Invalid array format');
+        }
+        else
+        {
+            if(input.includes('...'))
+            
             {
-                throw new Error('Invalid array format')
+                input=input.replace('...','${'+tokens[i].tokenName+'}');
+                return input;
+            }
+            else
+            {
+                return input;
             }
             
-            
         }
-   
-} 
-else {
-   
- throw new Error('Invalid input');
-   
-   
-}
+        
+    }
     
     
     
