@@ -26,8 +26,7 @@ if(input.length<6) {
             if(input.includes('...'))
             
             {   
-                
-                //input=input.replace('...','${'+tokens[i].tokenName+'}');
+            
             
                 var arr=[];
                 arr=input.split("...");
